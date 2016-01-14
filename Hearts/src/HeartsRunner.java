@@ -11,6 +11,9 @@ public class HeartsRunner
 	static int cardNumber = 1;
 	static int positionTwoOfClubs;
 	static boolean heartsBroken = false;
+	static int firstPlayed;
+	static int addTo;
+	static int wonTrick;
 	
 	static ArrayList<Card> playerHand1 = new ArrayList<Card>();
 	static ArrayList<Card> playerHand2 = new ArrayList<Card>();
@@ -84,6 +87,7 @@ public class HeartsRunner
 	System.out.println();	
 	System.out.println("The suit played is " + suitPlayed + ".");
 	System.out.println();	
+	nextUp();
 	}
 	
 	public static void twoOfClubs()
@@ -97,6 +101,7 @@ public class HeartsRunner
 			nextUp = 2;
 			onTheTable.add(playerHand1.get(positionTwoOfClubs));
 			playerHand1.remove(positionTwoOfClubs);
+			firstPlayed = 1;
 			break;
 			}
 		}
@@ -110,6 +115,7 @@ public class HeartsRunner
 			nextUp = 3;
 			onTheTable.add(playerHand2.get(positionTwoOfClubs));
 			playerHand2.remove(positionTwoOfClubs);
+			firstPlayed = 2;
 			break;
 			}
 		}
@@ -122,6 +128,7 @@ public class HeartsRunner
 			nextUp = 4;
 			onTheTable.add(playerHand3.get(positionTwoOfClubs));
 			playerHand3.remove(positionTwoOfClubs);
+			firstPlayed = 3;
 			break;
 			}
 		}
@@ -134,6 +141,7 @@ public class HeartsRunner
 			nextUp = 1;
 			onTheTable.add(playerHand4.get(positionTwoOfClubs));
 			playerHand4.remove(positionTwoOfClubs);
+			firstPlayed = 4;
 			break;
 			}
 		}
@@ -173,6 +181,7 @@ public class HeartsRunner
 	{
 	System.out.println("Your hand:");	
 	System.out.println();
+	cardNumber = 1;
 	for(Card c: playerHand1)
 		{
 		System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
@@ -194,6 +203,308 @@ public class HeartsRunner
 		}
 	}
 	
+	public static void endRound()
+	{
+	if(onTheTable.size() == 4)
+		{
+		String suit = onTheTable.get(0).getSuit(); 
+		
+		if((onTheTable.get(1).getSuit().equals(suit)) && (onTheTable.get(2).getSuit().equals(suit)) && (onTheTable.get(3).getSuit().equals(suit)))   /* if 1, 2, and 3 match suit */
+			{
+			if((onTheTable.get(0).getNumber() > onTheTable.get(1).getNumber()) && (onTheTable.get(0).getNumber() > onTheTable.get(2).getNumber()) && (onTheTable.get(0).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 0;
+				}
+			else if((onTheTable.get(1).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(1).getNumber() > onTheTable.get(2).getNumber()) && (onTheTable.get(1).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 1;
+				}
+			else if((onTheTable.get(2).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(2).getNumber() > onTheTable.get(1).getNumber()) && (onTheTable.get(2).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 2;
+				}
+			else if((onTheTable.get(3).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(3).getNumber() > onTheTable.get(1).getNumber()) && (onTheTable.get(3).getNumber() > onTheTable.get(2).getNumber()))
+				{
+				addTo = 3;
+				}
+			}
+		else if((onTheTable.get(1).getSuit().equals(suit)) && (onTheTable.get(2).getSuit().equals(suit)))      /* if 1 and 2 match suit */
+			{
+			if((onTheTable.get(0).getNumber() > onTheTable.get(1).getNumber()) && (onTheTable.get(0).getNumber() > onTheTable.get(2).getNumber()))
+				{
+				addTo = 0;
+				}
+			else if((onTheTable.get(1).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(1).getNumber() > onTheTable.get(2).getNumber()))
+				{
+				addTo = 1;
+				}
+			else if((onTheTable.get(2).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(2).getNumber() > onTheTable.get(1).getNumber()))
+				{
+				addTo = 2;
+				}
+			}
+		else if((onTheTable.get(2).getSuit().equals(suit)) && (onTheTable.get(3).getSuit().equals(suit)))    /* if 2 and 3 match suit */
+			{
+			if((onTheTable.get(0).getNumber() > onTheTable.get(2).getNumber()) && (onTheTable.get(0).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 0;
+				}
+			else if((onTheTable.get(2).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(2).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 2;
+				}
+			else if((onTheTable.get(3).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(3).getNumber() > onTheTable.get(2).getNumber()))
+				{
+				addTo = 3;
+				}
+			}
+		else if((onTheTable.get(1).getSuit().equals(suit)) && (onTheTable.get(3).getSuit().equals(suit)))    /* if 1 and 3 match suit */
+			{
+			if((onTheTable.get(0).getNumber() > onTheTable.get(1).getNumber()) && (onTheTable.get(0).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 0;
+				}
+			else if((onTheTable.get(1).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(1).getNumber() > onTheTable.get(3).getNumber()))
+				{
+				addTo = 1;
+				}
+			else if((onTheTable.get(3).getNumber() > onTheTable.get(0).getNumber()) && (onTheTable.get(3).getNumber() > onTheTable.get(1).getNumber()))
+				{
+				addTo = 3;
+				}
+			}
+		else if((onTheTable.get(1).getSuit().equals(suit)))   /* if 1 matches suit */
+			{
+			if(onTheTable.get(0).getNumber() > onTheTable.get(1).getNumber())
+				{
+				addTo = 0;
+				}
+			else
+				{
+				addTo = 1;
+				}
+			}
+		else if((onTheTable.get(2).getSuit().equals(suit)))   /* if 2 matches suit */
+			{
+			if(onTheTable.get(0).getNumber() > onTheTable.get(2).getNumber())
+				{
+				addTo = 0;
+				}
+			else
+				{
+				addTo = 2;
+				}
+			}
+		else if((onTheTable.get(3).getSuit().equals(suit)))   /* if 3 matches suit */
+			{
+			if(onTheTable.get(0).getNumber() > onTheTable.get(3).getNumber())
+				{
+				addTo = 0;
+				}
+			else
+				{
+				addTo = 3;
+				}
+			}
+		else    /* if none match suit */
+			{
+			addTo = 0;
+			}
+		
+		addTo();
+		}
+	else
+		{
+		nextUp();
+		}
+	}
+	
+	public static void wonTrick()
+	{
+	if(wonTrick == 1)
+		{
+		System.out.println("You won the trick.");
+		nextUp = 1;
+		}
+	else if(wonTrick == 2)
+		{
+		System.out.println("Player 2 won the trick.");
+		nextUp = 2;
+		}
+	else if(wonTrick == 3)
+		{
+		System.out.println("Player 3 won the trick.");
+		nextUp = 3;
+		}
+	else if(wonTrick == 4)
+		{
+		System.out.println("Player 4 won the trick.");
+		nextUp = 4;
+		}
+	nextUp();
+	}
+	
+	public static void addTo()
+	{
+	if(firstPlayed == 1)
+		{
+		if(addTo == 0)
+			{
+			for(int i=0; i<4; i++)
+				{
+				player1Collection.add(onTheTable.get(0));
+				onTheTable.remove(0);
+				wonTrick = 1;
+				}
+			}
+		else if(addTo == 1)
+			{
+			for(int i=0; i<4; i++)
+				{
+				player2Collection.add(onTheTable.get(0));
+				onTheTable.remove(0);
+				wonTrick = 2;
+				}
+			}
+		else if(addTo == 2)
+			{
+			for(int i=0; i<4; i++)
+				{
+				player3Collection.add(onTheTable.get(0));
+				onTheTable.remove(0);
+				wonTrick = 3;
+				}
+			}
+		else if(addTo == 3)
+			{
+			for(int i=0; i<4; i++)
+				{
+				player4Collection.add(onTheTable.get(0));
+				onTheTable.remove(0);
+				wonTrick = 4;
+				}
+			}
+		}
+	else if(firstPlayed == 2)
+		{
+		if(addTo == 0)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player2Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 2;
+			}
+		}
+	else if(addTo == 1)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player3Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 3;
+			}
+		}
+	else if(addTo == 2)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player4Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 4;
+			}
+		}
+	else if(addTo == 3)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player1Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 1;
+			}
+		}
+		}
+	else if(firstPlayed == 3)
+		{
+		if(addTo == 0)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player3Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 3;
+			}
+		}
+	else if(addTo == 1)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player4Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 4;
+			}
+		}
+	else if(addTo == 2)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player1Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 1;
+			}
+		}
+	else if(addTo == 3)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player2Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 2;
+			}
+		}
+		}
+	else if(firstPlayed == 4)
+		{
+		if(addTo == 0)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player4Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 4;
+			}
+		}
+	else if(addTo == 1)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player1Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 1;
+			}
+		}
+	else if(addTo == 2)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player2Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 2;
+			}
+		}
+	else if(addTo == 3)
+		{
+		for(int i=0; i<4; i++)
+			{
+			player3Collection.add(onTheTable.get(0));
+			onTheTable.remove(0);
+			wonTrick = 3;
+			}
+		}
+		}
+	wonTrick();
+	}
+	
 	public static void nextUp()
 	{
 	if(nextUp == 1)
@@ -201,41 +512,61 @@ public class HeartsRunner
 		System.out.println("It is your turn.");
 		userTurn();
 		nextUp = 2;
+		endRound();
 		}
 	else if(nextUp == 2)
 		{
 		System.out.println("Player 2 is up.");
 		ai2();
 		nextUp = 3;
+		endRound();
 		}
 	else if(nextUp == 3)
 		{
 		System.out.println("Player 3 is up.");
 		ai3();
 		nextUp = 4;
+		endRound();
 		}
 	else if(nextUp == 4)
 		{
 		System.out.println("Player 4 is up.");
 		ai4();
 		nextUp = 1;
+		endRound();
 		}
 	
 	}
 	
-	//public static void userTurn()
+	public static void play()
+	{
+	
+	}
+	
+	
+	
+	
+	
+	public static void userTurn()
 	{
 		if(onTheTable.size() == 0)
 			{
+			firstPlayed = 1;
 			if(heartsBroken == true)
 				{
 				
 				}
 			else
 				{
-				int random = ((int) Math.random()*playerHand1.size());
-				onTheTable.add(playerHand1.get(random));
-				playerHand1.remove(random);
+				System.out.println("You are starting the round. Type the number of the card you want to play.");
+				System.out.println();
+				viewHand();
+				
+				Scanner userInput1 = new Scanner(System.in);
+				int choice = userInput1.nextInt();
+				
+				onTheTable.add(playerHand1.get(choice-1));
+				playerHand1.remove(choice-1);
 				}
 			}
 		else
@@ -248,6 +579,7 @@ public class HeartsRunner
 						{
 						playable1.add(playerHand1.get(i));
 						playerHand1.remove(i);
+						i++;
 						}
 					else
 						{
@@ -255,22 +587,43 @@ public class HeartsRunner
 						}
 					}
 				if(playable1.size() > 0)
-					{
-					int random = ((int) Math.random()*playable1.size());
-					onTheTable.add(playable1.get(random));
-					playable1.remove(random);
-					
+				{
+					System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+					System.out.println();
+					cardNumber = 1;
+					for(Card c: playable1)
+						{
+						System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+						cardNumber+=1;
+						}
+					System.out.println();
+					Scanner userInput1 = new Scanner(System.in);
+					int choice = userInput1.nextInt();
+					onTheTable.add(playable1.get(choice-1));
+					playable1.remove(choice);
+			
 					for(int i=0; i<playable1.size(); i++)
 						{
 						playerHand1.add(playable1.get(i));
 						playable1.remove(i);
+						i++;
 						}
 					}
 				else
 					{
-					int random = ((int) Math.random()*playerHand1.size());
-					onTheTable.add(playerHand1.get(random));
-					playerHand1.remove(random);
+					System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+					System.out.println();
+					cardNumber = 1;
+					for(Card c: playerHand1)
+						{
+						System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+						cardNumber+=1;
+						}
+					System.out.println();
+					Scanner userInput1 = new Scanner(System.in);
+					int choice = userInput1.nextInt();
+					onTheTable.add(playerHand1.get(choice));
+					playerHand1.remove(choice);
 					}
 				}
 			else if(onTheTable.get(0).getSuit().equals("spades"))
@@ -281,6 +634,7 @@ public class HeartsRunner
 							{
 							playable1.add(playerHand1.get(i));
 							playerHand1.remove(i);
+							i++;
 							}
 						else
 							{
@@ -288,22 +642,43 @@ public class HeartsRunner
 							}
 						}
 					if(playable1.size() > 0)
-						{
-						int random = ((int) Math.random()*playable1.size());
-						onTheTable.add(playable1.get(random));
-						playable1.remove(random);
-						
+					{
+						System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+						System.out.println();
+						cardNumber = 1;
+						for(Card c: playable1)
+							{
+							System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+							cardNumber+=1;
+							}
+						System.out.println();
+						Scanner userInput1 = new Scanner(System.in);
+						int choice = userInput1.nextInt();
+						onTheTable.add(playable1.get(choice-1));
+						playable1.remove(choice);
+				
 						for(int i=0; i<playable1.size(); i++)
 							{
 							playerHand1.add(playable1.get(i));
 							playable1.remove(i);
+							i++;
 							}
 						}
 					else
 						{
-						int random = ((int) Math.random()*playerHand1.size());
-						onTheTable.add(playerHand1.get(random));
-						playerHand1.remove(random);
+						System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+						System.out.println();
+						cardNumber = 1;
+						for(Card c: playerHand1)
+							{
+							System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+							cardNumber+=1;
+							}
+						System.out.println();
+						Scanner userInput1 = new Scanner(System.in);
+						int choice = userInput1.nextInt();
+						onTheTable.add(playerHand1.get(choice));
+						playerHand1.remove(choice);
 						}
 				}
 			else if(onTheTable.get(0).getSuit().equals("hearts"))
@@ -314,6 +689,7 @@ public class HeartsRunner
 								{
 								playable1.add(playerHand1.get(i));
 								playerHand1.remove(i);
+								i++;
 								}
 							else
 								{
@@ -322,21 +698,40 @@ public class HeartsRunner
 						}
 					if(playable1.size() > 0)
 						{
-						int random = ((int) Math.random()*playable1.size());
-						onTheTable.add(playable1.get(random));
-						playable1.remove(random);
+						System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+						System.out.println();
+						for(Card c: playable1)
+							{
+							System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+							cardNumber+=1;
+							}
+						System.out.println();
+						Scanner userInput1 = new Scanner(System.in);
+						int choice = userInput1.nextInt();
+						onTheTable.add(playable1.get(choice-1));
+						playable1.remove(choice);
 				
 						for(int i=0; i<playable1.size(); i++)
 							{
 							playerHand1.add(playable1.get(i));
 							playable1.remove(i);
+							i++;
 							}
 						}
 					else
 						{
-						int random = ((int) Math.random()*playerHand1.size());
-						onTheTable.add(playerHand1.get(random));
-						playerHand1.remove(random);
+						System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+						System.out.println();
+						for(Card c: playerHand1)
+							{
+							System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+							cardNumber+=1;
+							}
+						System.out.println();
+						Scanner userInput1 = new Scanner(System.in);
+						int choice = userInput1.nextInt();
+						onTheTable.add(playerHand1.get(choice));
+						playerHand1.remove(choice);
 						}
 				}
 			else if(onTheTable.get(0).getSuit().equals("diamonds"))
@@ -347,6 +742,7 @@ public class HeartsRunner
 							{
 							playable1.add(playerHand1.get(i));
 							playerHand1.remove(i);
+							i++;
 							}
 						else
 							{
@@ -354,22 +750,41 @@ public class HeartsRunner
 							}
 					}
 				if(playable1.size() > 0)
-					{
-					int random = ((int) Math.random()*playable1.size());
-					onTheTable.add(playable1.get(random));
-					playable1.remove(random);
+				{
+					System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+					System.out.println();
+					for(Card c: playable1)
+						{
+						System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+						cardNumber+=1;
+						}
+					System.out.println();
+					Scanner userInput1 = new Scanner(System.in);
+					int choice = userInput1.nextInt();
+					onTheTable.add(playable1.get(choice-1));
+					playable1.remove(choice);
 			
 					for(int i=0; i<playable1.size(); i++)
 						{
 						playerHand1.add(playable1.get(i));
 						playable1.remove(i);
+						i++;
 						}
 					}
 				else
 					{
-					int random = ((int) Math.random()*playerHand1.size());
-					onTheTable.add(playerHand1.get(random));
-					playerHand1.remove(random);
+					System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
+					System.out.println();
+					for(Card c: playerHand1)
+						{
+						System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
+						cardNumber+=1;
+						}
+					System.out.println();
+					Scanner userInput1 = new Scanner(System.in);
+					int choice = userInput1.nextInt();
+					onTheTable.add(playerHand1.get(choice));
+					playerHand1.remove(choice);
 					}
 			}
 			}
@@ -379,6 +794,7 @@ public class HeartsRunner
 	{
 	if(onTheTable.size() == 0)
 		{
+		firstPlayed = 2;
 		if(heartsBroken == true)
 			{
 			
@@ -400,6 +816,7 @@ public class HeartsRunner
 					{
 					playable2.add(playerHand2.get(i));
 					playerHand2.remove(i);
+					i++;
 					}
 				else
 					{
@@ -416,6 +833,7 @@ public class HeartsRunner
 					{
 					playerHand2.add(playable2.get(i));
 					playable2.remove(i);
+					i++;
 					}
 				}
 			else
@@ -433,6 +851,7 @@ public class HeartsRunner
 						{
 						playable2.add(playerHand2.get(i));
 						playerHand2.remove(i);
+						i++;
 						}
 					else
 						{
@@ -449,6 +868,7 @@ public class HeartsRunner
 						{
 						playerHand2.add(playable2.get(i));
 						playable2.remove(i);
+						i++;
 						}
 					}
 				else
@@ -466,6 +886,7 @@ public class HeartsRunner
 							{
 							playable2.add(playerHand2.get(i));
 							playerHand2.remove(i);
+							i++;
 							}
 						else
 							{
@@ -482,6 +903,7 @@ public class HeartsRunner
 						{
 						playerHand2.add(playable2.get(i));
 						playable2.remove(i);
+						i++;
 						}
 					}
 				else
@@ -499,6 +921,7 @@ public class HeartsRunner
 						{
 						playable2.add(playerHand2.get(i));
 						playerHand2.remove(i);
+						i++;
 						}
 					else
 						{
@@ -515,6 +938,7 @@ public class HeartsRunner
 					{
 					playerHand2.add(playable2.get(i));
 					playable2.remove(i);
+					i++;
 					}
 				}
 			else
@@ -525,12 +949,15 @@ public class HeartsRunner
 				}
 		}
 		}
+	System.out.println();
+	System.out.println("Player 2 played the " + onTheTable.get(onTheTable.size()-1).getRank() + " of " + onTheTable.get(onTheTable.size()-1).getSuit() + ".");
 	}
 	
 	public static void ai3()
 	{
 		if(onTheTable.size() == 0)
 			{
+			firstPlayed = 3;
 			if(heartsBroken == true)
 				{
 				
@@ -552,6 +979,7 @@ public class HeartsRunner
 						{
 						playable3.add(playerHand3.get(i));
 						playerHand3.remove(i);
+						i++;
 						}
 					else
 						{
@@ -568,6 +996,7 @@ public class HeartsRunner
 						{
 						playerHand3.add(playable3.get(i));
 						playable3.remove(i);
+						i++;
 						}
 					}
 				else
@@ -585,6 +1014,7 @@ public class HeartsRunner
 							{
 							playable3.add(playerHand3.get(i));
 							playerHand3.remove(i);
+							i++;
 							}
 						else
 							{
@@ -601,6 +1031,7 @@ public class HeartsRunner
 							{
 							playerHand3.add(playable3.get(i));
 							playable3.remove(i);
+							i++;
 							}
 						}
 					else
@@ -618,6 +1049,7 @@ public class HeartsRunner
 								{
 								playable3.add(playerHand3.get(i));
 								playerHand3.remove(i);
+								i++;
 								}
 							else
 								{
@@ -634,6 +1066,7 @@ public class HeartsRunner
 							{
 							playerHand3.add(playable3.get(i));
 							playable3.remove(i);
+							i++;
 							}
 						}
 					else
@@ -651,6 +1084,7 @@ public class HeartsRunner
 							{
 							playable3.add(playerHand3.get(i));
 							playerHand3.remove(i);
+							i++;
 							}
 						else
 							{
@@ -667,6 +1101,7 @@ public class HeartsRunner
 						{
 						playerHand3.add(playable3.get(i));
 						playable3.remove(i);
+						i++;
 						}
 					}
 				else
@@ -677,12 +1112,15 @@ public class HeartsRunner
 					}
 			}
 			}
+		System.out.println();
+		System.out.println("Player 3 played the " + onTheTable.get(onTheTable.size()-1).getRank() + " of " + onTheTable.get(onTheTable.size()-1).getSuit() + ".");
 		}
 	
 	public static void ai4()
 	{
 		if(onTheTable.size() == 0)
 			{
+			firstPlayed = 4;
 			if(heartsBroken == true)
 				{
 				
@@ -704,6 +1142,7 @@ public class HeartsRunner
 						{
 						playable4.add(playerHand4.get(i));
 						playerHand4.remove(i);
+						i++;
 						}
 					else
 						{
@@ -720,6 +1159,7 @@ public class HeartsRunner
 						{
 						playerHand4.add(playable4.get(i));
 						playable4.remove(i);
+						i++;
 						}
 					}
 				else
@@ -737,6 +1177,7 @@ public class HeartsRunner
 							{
 							playable4.add(playerHand4.get(i));
 							playerHand4.remove(i);
+							i++;
 							}
 						else
 							{
@@ -753,6 +1194,7 @@ public class HeartsRunner
 							{
 							playerHand4.add(playable4.get(i));
 							playable4.remove(i);
+							i++;
 							}
 						}
 					else
@@ -770,6 +1212,7 @@ public class HeartsRunner
 								{
 								playable4.add(playerHand4.get(i));
 								playerHand4.remove(i);
+								i++;
 								}
 							else
 								{
@@ -786,6 +1229,7 @@ public class HeartsRunner
 							{
 							playerHand4.add(playable4.get(i));
 							playable4.remove(i);
+							i++;
 							}
 						}
 					else
@@ -803,6 +1247,7 @@ public class HeartsRunner
 							{
 							playable4.add(playerHand4.get(i));
 							playerHand4.remove(i);
+							i++;
 							}
 						else
 							{
@@ -819,6 +1264,7 @@ public class HeartsRunner
 						{
 						playerHand4.add(playable4.get(i));
 						playable4.remove(i);
+						i++;
 						}
 					}
 				else
@@ -829,6 +1275,8 @@ public class HeartsRunner
 					}
 			}
 			}
+		System.out.println();
+		System.out.println("Player 4 played the " + onTheTable.get(onTheTable.size()-1).getRank() + " of " + onTheTable.get(onTheTable.size()-1).getSuit() + ".");
 		}
 
 }

@@ -6,7 +6,7 @@ public class Deck
 	
 	public static void fillDeck()
 	{
-	deck.add(new Card("ace", "spades", 1));
+	deck.add(new Card("ace", "spades", 14));
 	deck.add(new Card("two", "spades", 2));
 	deck.add(new Card("three", "spades", 3));
 	deck.add(new Card("four", "spades", 4));
@@ -20,7 +20,7 @@ public class Deck
 	deck.add(new Card("queen", "spades", 12));
 	deck.add(new Card("king", "spades", 13));
 	
-	deck.add(new Card("ace", "clubs", 1));
+	deck.add(new Card("ace", "clubs", 14));
 	deck.add(new Card("two", "clubs", 2));
 	deck.add(new Card("three", "clubs", 3));
 	deck.add(new Card("four", "clubs", 4));
@@ -34,7 +34,7 @@ public class Deck
 	deck.add(new Card("queen", "clubs", 12));
 	deck.add(new Card("king", "clubs", 13));
 	
-	deck.add(new Card("ace", "hearts", 1));
+	deck.add(new Card("ace", "hearts", 14));
 	deck.add(new Card("two", "hearts", 2));
 	deck.add(new Card("three", "hearts", 3));
 	deck.add(new Card("four", "hearts", 4));
@@ -48,7 +48,7 @@ public class Deck
 	deck.add(new Card("queen", "hearts", 12));
 	deck.add(new Card("king", "hearts", 13));
 	
-	deck.add(new Card("ace", "diamonds", 1));
+	deck.add(new Card("ace", "diamonds", 14));
 	deck.add(new Card("two", "diamonds", 2));
 	deck.add(new Card("three", "diamonds", 3));
 	deck.add(new Card("four", "diamonds", 4));
