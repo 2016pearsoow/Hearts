@@ -85,8 +85,7 @@ public class HeartsRunner
 	public static void gameplay()
 	{
 	System.out.println();	
-	System.out.println("The suit played is " + suitPlayed + ".");
-	System.out.println();	
+	System.out.println("The suit played is " + suitPlayed + ".");	
 	nextUp();
 	}
 	
@@ -319,26 +318,38 @@ public class HeartsRunner
 		}
 	}
 	
+	public static void waiting()
+	{
+	try {
+		Thread.sleep(1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
+	}
+	
 	public static void wonTrick()
 	{
+	waiting();	
+	System.out.println();	
 	if(wonTrick == 1)
 		{
-		System.out.println("You won the trick.");
+		System.err.println("You won the trick.");
 		nextUp = 1;
 		}
 	else if(wonTrick == 2)
 		{
-		System.out.println("Player 2 won the trick.");
+		System.err.println("Player 2 won the trick.");
 		nextUp = 2;
 		}
 	else if(wonTrick == 3)
 		{
-		System.out.println("Player 3 won the trick.");
+		System.err.println("Player 3 won the trick.");
 		nextUp = 3;
 		}
 	else if(wonTrick == 4)
 		{
-		System.out.println("Player 4 won the trick.");
+		System.err.println("Player 4 won the trick.");
 		nextUp = 4;
 		}
 	nextUp();
@@ -507,6 +518,7 @@ public class HeartsRunner
 	
 	public static void nextUp()
 	{
+	System.out.println();	
 	if(nextUp == 1)
 		{
 		System.out.println("It is your turn.");
@@ -600,7 +612,7 @@ public class HeartsRunner
 					Scanner userInput1 = new Scanner(System.in);
 					int choice = userInput1.nextInt();
 					onTheTable.add(playable1.get(choice-1));
-					playable1.remove(choice);
+					playable1.remove(choice-1);
 			
 					for(int i=0; i<playable1.size(); i++)
 						{
@@ -655,7 +667,7 @@ public class HeartsRunner
 						Scanner userInput1 = new Scanner(System.in);
 						int choice = userInput1.nextInt();
 						onTheTable.add(playable1.get(choice-1));
-						playable1.remove(choice);
+						playable1.remove(choice-1);
 				
 						for(int i=0; i<playable1.size(); i++)
 							{
@@ -700,6 +712,7 @@ public class HeartsRunner
 						{
 						System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
 						System.out.println();
+						cardNumber = 1;
 						for(Card c: playable1)
 							{
 							System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
@@ -709,7 +722,7 @@ public class HeartsRunner
 						Scanner userInput1 = new Scanner(System.in);
 						int choice = userInput1.nextInt();
 						onTheTable.add(playable1.get(choice-1));
-						playable1.remove(choice);
+						playable1.remove(choice-1);
 				
 						for(int i=0; i<playable1.size(); i++)
 							{
@@ -722,6 +735,7 @@ public class HeartsRunner
 						{
 						System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
 						System.out.println();
+						cardNumber = 1;
 						for(Card c: playerHand1)
 							{
 							System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
@@ -753,6 +767,7 @@ public class HeartsRunner
 				{
 					System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
 					System.out.println();
+					cardNumber = 1;
 					for(Card c: playable1)
 						{
 						System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
@@ -762,7 +777,7 @@ public class HeartsRunner
 					Scanner userInput1 = new Scanner(System.in);
 					int choice = userInput1.nextInt();
 					onTheTable.add(playable1.get(choice-1));
-					playable1.remove(choice);
+					playable1.remove(choice-1);
 			
 					for(int i=0; i<playable1.size(); i++)
 						{
@@ -775,6 +790,7 @@ public class HeartsRunner
 					{
 					System.out.println("You can play any of the following cards. Type the number of the card you want to play.");
 					System.out.println();
+					cardNumber = 1;
 					for(Card c: playerHand1)
 						{
 						System.out.println(cardNumber + ". " + c.getRank() + " of " + c.getSuit());
