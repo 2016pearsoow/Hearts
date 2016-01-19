@@ -15,6 +15,11 @@ public class HeartsRunner
 	static int addTo;
 	static int wonTrick;
 	
+	static int player1Score = 0;
+	static int player2Score = 0;
+	static int player3Score = 0;
+	static int player4Score = 0;
+	
 	static ArrayList<Card> playerHand1 = new ArrayList<Card>();
 	static ArrayList<Card> playerHand2 = new ArrayList<Card>();
 	static ArrayList<Card> playerHand3 = new ArrayList<Card>();
@@ -550,9 +555,75 @@ public class HeartsRunner
 	
 	}
 	
-	public static void play()
+	public static void endGame()
 	{
-	
+	for(int i=0; i<player1Collection.size(); i++)
+		{
+		if(player1Collection.get(i).getSuit().equals("hearts"))
+			{
+			player1Score += 1;
+			}
+		if(player1Collection.get(i).getSuit().equals("spades") && player1Collection.get(i).getRank().equals("queen"))
+			{
+			player1Score += 13;
+			}
+		if(player1Collection.get(i).getSuit().equals("diamonds") && player1Collection.get(i).getRank().equals("jack"))
+			{
+			player1Score -= 10;
+			}
+		}
+	for(int i=0; i<player2Collection.size(); i++)
+	{
+	if(player2Collection.get(i).getSuit().equals("hearts"))
+		{
+		player2Score += 1;
+		}
+	if(player2Collection.get(i).getSuit().equals("spades") && player2Collection.get(i).getRank().equals("queen"))
+		{
+		player2Score += 13;
+		}
+	if(player2Collection.get(i).getSuit().equals("diamonds") && player2Collection.get(i).getRank().equals("jack"))
+		{
+		player2Score -= 10;
+		}
+	}
+	for(int i=0; i<player3Collection.size(); i++)
+	{
+	if(player3Collection.get(i).getSuit().equals("hearts"))
+		{
+		player3Score += 1;
+		}
+	if(player3Collection.get(i).getSuit().equals("spades") && player3Collection.get(i).getRank().equals("queen"))
+		{
+		player3Score += 13;
+		}
+	if(player3Collection.get(i).getSuit().equals("diamonds") && player3Collection.get(i).getRank().equals("jack"))
+		{
+		player3Score -= 10;
+		}
+	}
+	for(int i=0; i<player4Collection.size(); i++)
+	{
+	if(player4Collection.get(i).getSuit().equals("hearts"))
+		{
+		player4Score += 1;
+		}
+	if(player4Collection.get(i).getSuit().equals("spades") && player4Collection.get(i).getRank().equals("queen"))
+		{
+		player4Score += 13;
+		}
+	if(player4Collection.get(i).getSuit().equals("diamonds") && player4Collection.get(i).getRank().equals("jack"))
+		{
+		player4Score -= 10;
+		}
+	}
+	System.out.println();
+	System.out.println("The final scores are:");
+	System.out.println();
+	System.out.println("Player 1: " + player1Score);
+	System.out.println("Player 2: " + player2Score);
+	System.out.println("Player 3: " + player3Score);
+	System.out.println("Player 4: " + player4Score);
 	}
 	
 	
@@ -561,6 +632,11 @@ public class HeartsRunner
 	
 	public static void userTurn()
 	{
+		if(playerHand1.size() == 0)
+			{
+			endGame();
+			}
+		
 		if(onTheTable.size() == 0)
 			{
 			firstPlayed = 1;
@@ -585,7 +661,7 @@ public class HeartsRunner
 			{
 			if(onTheTable.get(0).getSuit().equals("clubs"))
 				{
-				for(int i=0; i<playerHand1.size(); i++)
+				for(int i=0; i<playerHand1.size(); i++)   
 					{
 					if(playerHand1.get(i).getSuit().equals("clubs"))
 						{
@@ -808,6 +884,11 @@ public class HeartsRunner
 	
 	public static void ai2()
 	{
+	if(playerHand2.size() == 0)
+	{
+	endGame();		
+	}	
+		
 	if(onTheTable.size() == 0)
 		{
 		firstPlayed = 2;
@@ -971,7 +1052,12 @@ public class HeartsRunner
 	
 	public static void ai3()
 	{
-		if(onTheTable.size() == 0)
+	if(playerHand3.size() == 0)
+	{
+	endGame();
+	}	
+	
+	if(onTheTable.size() == 0)
 			{
 			firstPlayed = 3;
 			if(heartsBroken == true)
@@ -1134,6 +1220,11 @@ public class HeartsRunner
 	
 	public static void ai4()
 	{
+	if(playerHand4.size() == 0)
+	{
+	endGame();
+	}		
+	
 		if(onTheTable.size() == 0)
 			{
 			firstPlayed = 4;
