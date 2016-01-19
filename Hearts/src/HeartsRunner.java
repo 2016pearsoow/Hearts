@@ -620,10 +620,11 @@ public class HeartsRunner
 	System.out.println();
 	System.out.println("The final scores are:");
 	System.out.println();
-	System.out.println("Player 1: " + player1Score);
+	System.out.println("     You: " + player1Score);
 	System.out.println("Player 2: " + player2Score);
 	System.out.println("Player 3: " + player3Score);
 	System.out.println("Player 4: " + player4Score);
+	System.exit(0);
 	}
 	
 	
@@ -710,8 +711,8 @@ public class HeartsRunner
 					System.out.println();
 					Scanner userInput1 = new Scanner(System.in);
 					int choice = userInput1.nextInt();
-					onTheTable.add(playerHand1.get(choice));
-					playerHand1.remove(choice);
+					onTheTable.add(playerHand1.get(choice-1));
+					playerHand1.remove(choice-1);
 					}
 				}
 			else if(onTheTable.get(0).getSuit().equals("spades"))
@@ -765,8 +766,8 @@ public class HeartsRunner
 						System.out.println();
 						Scanner userInput1 = new Scanner(System.in);
 						int choice = userInput1.nextInt();
-						onTheTable.add(playerHand1.get(choice));
-						playerHand1.remove(choice);
+						onTheTable.add(playerHand1.get(choice-1));
+						playerHand1.remove(choice-1);
 						}
 				}
 			else if(onTheTable.get(0).getSuit().equals("hearts"))
@@ -820,8 +821,8 @@ public class HeartsRunner
 						System.out.println();
 						Scanner userInput1 = new Scanner(System.in);
 						int choice = userInput1.nextInt();
-						onTheTable.add(playerHand1.get(choice));
-						playerHand1.remove(choice);
+						onTheTable.add(playerHand1.get(choice-1));
+						playerHand1.remove(choice-1);
 						}
 				}
 			else if(onTheTable.get(0).getSuit().equals("diamonds"))
@@ -875,8 +876,8 @@ public class HeartsRunner
 					System.out.println();
 					Scanner userInput1 = new Scanner(System.in);
 					int choice = userInput1.nextInt();
-					onTheTable.add(playerHand1.get(choice));
-					playerHand1.remove(choice);
+					onTheTable.add(playerHand1.get(choice-1));
+					playerHand1.remove(choice-1);
 					}
 			}
 			}
