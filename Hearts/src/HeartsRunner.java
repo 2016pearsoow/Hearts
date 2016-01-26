@@ -165,20 +165,20 @@ public class HeartsRunner
 	Scanner userInput1 = new Scanner(System.in);
 	String wait = userInput1.nextLine();
 	
-	System.out.println("Would you like to sort your cards? Y or N");
-	
-	Scanner userInput2 = new Scanner(System.in);
-	String sort = userInput2.nextLine();
-	
-	if(sort.equals("Y")||sort.equals("y"))
-		{
-		sortHand();
-		}
-	else
-		{
-		
-		}
-	
+//	System.out.println("Would you like to sort your cards? Y or N");
+//	
+//	Scanner userInput2 = new Scanner(System.in);
+//	String sort = userInput2.nextLine();
+//	
+//	if(sort.equals("Y")||sort.equals("y"))
+//		{
+//		sortHand();
+//		}
+//	else
+//		{
+//		
+//		}
+//	
 	}
 	
 	public static void viewHand()
